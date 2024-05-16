@@ -2,23 +2,22 @@
   <div
     v-bind:class="{
       'react-code-input-container': true,
-      [className]: !!className,
+      [className]: !!className
     }"
     v-bind:style="{ width: `${fields * fieldWidth}px` }"
     @paste="handlePaste"
   >
     <p class="title" v-if="title">{{ title }}</p>
     <div class="react-code-input">
-      <template v-for="(v, index) in values">
+      <template v-for="(v, index) in values" :key="`${id}-${index}`">
         <input
           :type="type === 'number' ? 'tel' : type"
           :pattern="type === 'number' ? '[0-9]' : null"
           :autoFocus="autoFocus && !loading && index === autoFocusIndex"
           :style="{
             width: `${fieldWidth}px`,
-            height: `${fieldHeight}px`,
+            height: `${fieldHeight}px`
           }"
-          :key="`${id}-${index}`"
           :data-id="index"
           :value="v"
           :ref="iRefs[index]"
@@ -31,11 +30,7 @@
         />
       </template>
     </div>
-    <div
-      v-if="loading"
-      class="loading"
-      :style="{ lineHeight: `${fieldHeight}px` }"
-    >
+    <div v-if="loading" class="loading" :style="{ lineHeight: `${fieldHeight}px` }">
       <div class="blur"></div>
       <svg
         class="spin"
@@ -61,186 +56,183 @@ const KEY_CODE = {
   left: 37,
   up: 38,
   right: 39,
-  down: 40,
-};
+  down: 40
+}
 
 export default {
-  name: "CodeInput",
+  name: 'CodeInput',
   props: {
     type: {
       type: String,
-      default: "number",
+      default: 'number'
     },
     className: String,
     fields: {
       type: Number,
-      default: 6,
+      default: 6
     },
     fieldWidth: {
       type: Number,
-      default: 58,
+      default: 58
     },
     fieldHeight: {
       type: Number,
-      default: 54,
+      default: 54
     },
     autoFocus: {
       type: Boolean,
-      default: true,
+      default: true
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     title: String,
     change: Function,
     complete: Function,
     loading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
-    const { fields, values } = this;
-    let vals;
-    let autoFocusIndex = 0;
+    const { fields, values } = this
+    let vals
+    let autoFocusIndex = 0
     if (values && values.length) {
-      vals = [];
+      vals = []
       for (let i = 0; i < fields; i++) {
-        vals.push(values[i] || "");
+        vals.push(values[i] || '')
       }
-      autoFocusIndex = values.length >= fields ? 0 : values.length;
+      autoFocusIndex = values.length >= fields ? 0 : values.length
     } else {
-      vals = Array(fields).fill("");
+      vals = Array(fields).fill('')
     }
 
-    this.iRefs = [];
+    this.iRefs = []
     for (let i = 0; i < fields; i++) {
-      this.iRefs.push(`input_${i}`);
+      this.iRefs.push(`input_${i}`)
     }
 
-    this.id = +new Date();
-    return { values: vals, autoFocusIndex };
+    this.id = +new Date()
+    return { values: vals, autoFocusIndex }
   },
   mounted() {},
   methods: {
     handlePaste(event) {
-      let data = event.clipboardData.getData("text");
+      let data = event.clipboardData.getData('text')
       function isNumber(char) {
-        return /^\d$/.test(char);
+        return /^\d$/.test(char)
       }
       for (let i = 0; i < data.length; i++) {
         if (i >= this.fields || !isNumber(data[i])) {
-          break;
+          break
         }
-        this.values[i] = data[i];
+        this.values[i] = data[i]
       }
     },
     onFocus(e) {
-      e.target.select(e);
+      e.target.select(e)
     },
     onValueChange(e) {
-      const index = parseInt(e.target.dataset.id);
-      const { type, fields } = this;
-      if (type === "number") {
-        e.target.value = e.target.value.replace(/[^\d]/gi, "");
+      const index = parseInt(e.target.dataset.id)
+      const { type, fields } = this
+      if (type === 'number') {
+        e.target.value = e.target.value.replace(/[^\d]/gi, '')
       }
       // this.handleKeys[index] = false;
-      if (
-        e.target.value === "" ||
-        (type === "number" && !e.target.validity.valid)
-      ) {
-        return;
+      if (e.target.value === '' || (type === 'number' && !e.target.validity.valid)) {
+        return
       }
-      let next;
-      const value = e.target.value;
-      let { values } = this;
-      values = Object.assign([], values);
+      let next
+      const value = e.target.value
+      let { values } = this
+      values = Object.assign([], values)
       if (value.length > 1) {
-        let nextIndex = value.length + index - 1;
+        let nextIndex = value.length + index - 1
         if (nextIndex >= fields) {
-          nextIndex = fields - 1;
+          nextIndex = fields - 1
         }
-        next = this.iRefs[nextIndex];
-        const split = value.split("");
+        next = this.iRefs[nextIndex]
+        const split = value.split('')
         split.forEach((item, i) => {
-          const cursor = index + i;
+          const cursor = index + i
           if (cursor < fields) {
-            values[cursor] = item;
+            values[cursor] = item
           }
-        });
-        this.values = values;
+        })
+        this.values = values
       } else {
-        next = this.iRefs[index + 1];
-        values[index] = value;
-        this.values = values;
+        next = this.iRefs[index + 1]
+        values[index] = value
+        this.values = values
       }
 
       if (next) {
-        const element = this.$refs[next][0];
-        element.focus();
-        element.select();
+        const element = this.$refs[next][0]
+        element.focus()
+        element.select()
       }
 
-      this.triggerChange(values);
+      this.triggerChange(values)
     },
     onKeyDown(e) {
-      const index = parseInt(e.target.dataset.id);
-      const prevIndex = index - 1;
-      const nextIndex = index + 1;
-      const prev = this.iRefs[prevIndex];
-      const next = this.iRefs[nextIndex];
+      const index = parseInt(e.target.dataset.id)
+      const prevIndex = index - 1
+      const nextIndex = index + 1
+      const prev = this.iRefs[prevIndex]
+      const next = this.iRefs[nextIndex]
       switch (e.keyCode) {
         case KEY_CODE.backspace: {
-          e.preventDefault();
-          const vals = [...this.values];
+          e.preventDefault()
+          const vals = [...this.values]
           if (this.values[index]) {
-            vals[index] = "";
-            this.values = vals;
-            this.triggerChange(vals);
+            vals[index] = ''
+            this.values = vals
+            this.triggerChange(vals)
           } else if (prev) {
-            vals[prevIndex] = "";
-            this.$refs[prev][0].focus();
-            this.values = vals;
-            this.triggerChange(vals);
+            vals[prevIndex] = ''
+            this.$refs[prev][0].focus()
+            this.values = vals
+            this.triggerChange(vals)
           }
-          break;
+          break
         }
         case KEY_CODE.left:
-          e.preventDefault();
+          e.preventDefault()
           if (prev) {
-            this.$refs[prev][0].focus();
+            this.$refs[prev][0].focus()
           }
-          break;
+          break
         case KEY_CODE.right:
-          e.preventDefault();
+          e.preventDefault()
           if (next) {
-            this.$refs[next][0].focus();
+            this.$refs[next][0].focus()
           }
-          break;
+          break
         case KEY_CODE.up:
         case KEY_CODE.down:
-          e.preventDefault();
-          break;
+          e.preventDefault()
+          break
         default:
           // this.handleKeys[index] = true;
-          break;
+          break
       }
     },
     triggerChange(values = this.values) {
-      const { fields } = this;
-      const val = values.join("");
-      this.$emit("change", val);
+      const { fields } = this
+      const val = values.join('')
+      this.$emit('change', val)
       if (val.length >= fields) {
-        this.$emit("complete", val);
+        this.$emit('complete', val)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

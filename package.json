@@ -1,8 +1,23 @@
 {
   "name": "ups-lil-ui-vue3",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ups-lil-ui-vue3.umd.cjs",
+  "module": "./dist/ups-lil-ui-vue3.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ups-lil-ui-vue3.js",
+      "require": "./dist/ups-lil-ui-vue3.umd.cjs"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,5 +38,24 @@
     "sass": "^1.77.1",
     "vite": "^5.2.8",
     "vite-plugin-svg-sprite": "^0.5.2"
-  }
+  },
+  "description": "Lil ui library with customazable inputs, icon loader and modal notification",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Altynboy/ups-lil-ui-vue3.git"
+  },
+  "keywords": [
+    "ui",
+    "vue3",
+    "components",
+    "inputs",
+    "modal",
+    "icon loader"
+  ],
+  "author": "Altynbek Kungirbayev <a.kungirbaev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Altynboy/ups-lil-ui-vue3/issues"
+  },
+  "homepage": "https://github.com/Altynboy/ups-lil-ui-vue3#readme"
 }
