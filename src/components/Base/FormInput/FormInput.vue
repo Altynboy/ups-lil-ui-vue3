@@ -7,7 +7,7 @@
         <input
           :class="{ mobile: mobile }"
           type="text"
-          :value="value"
+          :value="modelValue"
           :maxlength="max"
           @input="handleInput"
           @keypress="checkSintax($event)"
@@ -37,7 +37,7 @@ export default {
   },
 
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: ''
     },
@@ -104,7 +104,7 @@ export default {
         value = props.capitalize ? value.toUpperCase() : value
       }
 
-      emit('input', value)
+      emit('update:modelValue', value)
 
       if (value === null) {
         tooltipFlag.value = false

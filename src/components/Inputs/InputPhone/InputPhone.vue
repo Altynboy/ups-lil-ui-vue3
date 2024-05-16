@@ -9,34 +9,34 @@
     :warningMsg="options.warn"
     :sintax="options.sintax"
     capitalize
-    v-on="$listeners"
+    v-bind="$attrs"
   ></FormInput>
 </template>
 
 <script>
-import { validPhone } from "@/mixins/valid-rules.js";
-import FormInput from "@/components/Base/FormInput/FormInput.vue";
+import { validPhone } from '@/mixins/valid-rules.js'
+import FormInput from '@/components/Base/FormInput/FormInput.vue'
 
 export default {
   mixins: [validPhone],
   components: { FormInput },
+  emits: ['update:modelValue'],
   props: {
-    value: {
-      type: String,
-    },
+    modelValue: {
+      type: String
+    }
   },
-  // method
   computed: {
     inputVal: {
       get() {
-        return this.value;
+        return this.modelValue
       },
       set(val) {
-        this.$emit("input", val);
-      },
-    },
-  },
-};
+        this.$emit('update:modelValue', val)
+      }
+    }
+  }
+}
 </script>
 
 <style></style>

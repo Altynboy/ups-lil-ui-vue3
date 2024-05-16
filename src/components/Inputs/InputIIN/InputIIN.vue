@@ -19,18 +19,19 @@ import FormInput from '@/components/Base/FormInput/FormInput.vue'
 export default {
   mixins: [validIIN],
   components: { FormInput },
+  emits: ['update:modelValue'],
   props: {
-    value: {
+    modelValue: {
       type: String
     }
   },
   computed: {
     inputVal: {
       get() {
-        return this.value
+        return this.modelValue
       },
       set(val) {
-        this.$emit('input', val)
+        this.$emit('update:modelValue', val)
       }
     }
   }

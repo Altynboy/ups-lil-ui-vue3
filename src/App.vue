@@ -1,11 +1,13 @@
 <script>
-import InputIIN from '@/components/Inputs/InputIIN/InputIIN.vue'
+// import InputIIN from '@/components/Inputs/InputIIN/InputIIN.vue'
 import DefaultAlert from '@/components/Other/DefaultAlert/DefaultAlert.vue'
+import InputEmail from './components/Inputs/InputEmail/InputEmail.vue'
 
 export default {
   name: 'App',
   components: {
-    InputIIN,
+    // InputIIN,
+    InputEmail,
     DefaultAlert
   },
   data() {
@@ -19,7 +21,7 @@ export default {
 
 <template>
   <main>
-    <InputIIN v-model="iin" />
+    <InputEmail v-model="iin" />
     <h1>Hello world</h1>
     <button @click="isClicked = true">Show alert</button>
     <DefaultAlert

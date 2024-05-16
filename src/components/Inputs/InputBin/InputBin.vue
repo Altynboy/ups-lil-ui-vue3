@@ -8,33 +8,34 @@
     :min="options.maxlength"
     :warningMsg="options.warn"
     :sintax="options.sintax"
-    v-on="$listeners"
+    v-bind="$attrs"
   ></FormInput>
 </template>
 
 <script>
-import { validBin } from "@/mixins/valid-rules.js";
-import FormInput from "@/components/Base/FormInput/FormInput.vue";
+import { validBin } from '@/mixins/valid-rules.js'
+import FormInput from '@/components/Base/FormInput/FormInput.vue'
 
 export default {
   mixins: [validBin],
   components: { FormInput },
+  emits: ['update:modelValue'],
   props: {
-    value: {
-      type: String,
-    },
+    modelValue: {
+      type: String
+    }
   },
   computed: {
     inputVal: {
       get() {
-        return this.value;
+        return this.modelValue
       },
       set(val) {
-        this.$emit("input", val);
-      },
-    },
-  },
-};
+        this.$emit('update:modelValue', val)
+      }
+    }
+  }
+}
 </script>
 
 <style></style>
