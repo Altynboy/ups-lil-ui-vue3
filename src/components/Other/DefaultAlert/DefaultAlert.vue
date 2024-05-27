@@ -3,7 +3,7 @@
     <div
       tabindex="-1"
       @keydown.esc="hideSlot()"
-      class="ealert-container"
+      :class="['ealert-container', $attrs.class]"
       v-show="useStore ? this.$store.getters.isClicked : isClicked"
     >
       <div
@@ -12,13 +12,13 @@
         :class="{ wide: useStore ? $store.getters.height : wide }"
       >
         <div class="first">
-          <IconBase :customClass="'alert-icon'" :iconId="alertIcon()" />
+          <IconBase :class="'alert-icon'" :iconId="alertIcon()" />
           <span>
             {{ useStore ? $store.getters.defAlert.text : alertText }}
           </span>
         </div>
         <div class="close" @click="hideSlot()">
-          <IconBase :customClass="'close-icon'" :iconId="iconClose" />
+          <IconBase :class="'close-icon'" :iconId="iconClose" />
         </div>
       </div>
     </div>
@@ -30,6 +30,10 @@ import BaseTransition from '../Transition/BaseTransition.vue'
 import IconBase from '../../Base/IconBase/IconBase.vue'
 
 import iconInfo from '@/assets/icons/info.svg'
+import iconWarn from '@/assets/icons/warning.svg'
+import iconError from '@/assets/icons/error.svg'
+import iconSuccess from '@/assets/icons/success.svg'
+
 import iconClose from '@/assets/icons/close.svg'
 
 export default {
@@ -82,14 +86,14 @@ export default {
       alertIcon: () => {
         const alertCase = this.useStore ? this.$store.getters.defAlert.type : this.alertType
         switch (alertCase) {
-          // case 'error':
-          //   return 'red-alert'
-          // case 'warning':
-          //   return 'yellow-alert'
-          // case 'success':
-          //   return 'green-alert'
-          // case 'info':
-          //   return 'blue-alert'
+          case 'error':
+            return iconError
+          case 'warning':
+            return iconWarn
+          case 'success':
+            return iconSuccess
+          case 'info':
+            return iconInfo
           default:
             return iconInfo
         }

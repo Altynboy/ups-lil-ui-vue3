@@ -1,5 +1,5 @@
 <template>
-  <svg :class="['icon', customClass]" aria-hidden="true">
+  <svg :style="{ fill: iconColor }" :class="['icon', $attrs.class]" aria-hidden="true">
     <use :xlink:href="`#${iconId}`" />
   </svg>
 </template>
@@ -11,8 +11,9 @@ export default {
       type: String,
       required: true
     },
-    customClass: {
+    iconColor: {
       type: String,
+      required: false,
       default: ''
     }
   }
@@ -24,6 +25,6 @@ export default {
   width: 20px;
   height: 20px;
   /* fill: currentColor; */
-  fill: black;
+  fill: var(--icon-color, black);
 }
 </style>
