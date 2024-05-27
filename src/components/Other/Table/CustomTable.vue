@@ -85,7 +85,7 @@
               <td>
                 <template v-if="!customBtn">
                   <a
-                    class="btn"
+                    class="btn underline"
                     @keyup.enter="clickAction(i, j)"
                     @click="clickAction(i, j)"
                     v-for="(button, j) in tableData.buttons.data"
@@ -97,7 +97,7 @@
                   <span v-if="!specificBtn">Нельзя отменить!</span>
                   <a
                     v-else
-                    class="btn"
+                    class="btn underline"
                     @click="clickAction(i, j)"
                     v-for="(button, j) in tableData.buttons.data"
                     :key="j"
@@ -281,6 +281,7 @@ export default {
 
 <style lang="sass" scoped>
 @use "./table-style.sass"
+@use "@/sass/underline.sass"
 // @import @/sass/custom-styles/square-checkbox
 
 .table-iLS a:focus-visible
@@ -325,10 +326,8 @@ tr.table__row:hover
     font-size: 23px
     height: 100%
     border: none
-    background-color: white
     cursor: pointer
     color: var(--clr-main)
-    text-decoration: underline
 
 .rotate-up
   transform: rotate(0deg)
