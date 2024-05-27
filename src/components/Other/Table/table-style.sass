@@ -1,0 +1,39 @@
+%header-size
+  height: 50px
+
+%header-outShift-inShift
+  padding: 10px 8px
+
+%header-bg-color
+  // background-color: var(--clr-main)
+  background-color: #094973
+  color: white 
+
+%element-color
+  color: #666666
+
+%element-outShift-inShift
+  padding: 9px 8px
+
+%table-default-prop
+  font-size: 23px
+  text-align: center
+  width: 100%
+  border-collapse: collapse
+
+table
+  @extend %table-default-prop
+
+th
+  @extend %header-size
+  @extend %header-outShift-inShift
+  @extend %header-bg-color
+
+  font-weight: normal
+  border: 2px solid white
+
+td
+  @extend %element-outShift-inShift
+  @extend %element-color
+  border-bottom: 1px solid #CCCC
+  transition: .3s
