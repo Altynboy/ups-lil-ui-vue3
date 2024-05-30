@@ -8,7 +8,7 @@
     >
       <div
         class="ealert-container__popup"
-        v-bind:style="borderColor()"
+        :style="borderColor"
         :class="{ wide: useStore ? alertStore.height : wide }"
       >
         <div class="first">
@@ -84,6 +84,10 @@ export default {
     store: {
       type: String,
       default: 'pinia'
+    },
+    style: {
+      type: Object,
+      default: () => ({})
     }
   },
 
@@ -108,10 +112,11 @@ export default {
     }
   },
 
-  methods: {
+  computed: {
     borderColor() {
+      const alertCase = this.useStore ? this.alertStore.type : this.alertType
       let color = null
-      switch (this.alertType) {
+      switch (alertCase) {
         case 'error':
           color = this.colorError
           break
@@ -126,10 +131,20 @@ export default {
           break
       }
 
-      let result = 'border-left:' + '5px solid' + color
+      let result = {
+        borderLeft: '5px solid ' + color
+      }
 
+      if (this.style) {
+        for (const key in this.style) {
+          result[key] = this.style[key]
+        }
+      }
       return result
-    },
+    }
+  },
+
+  methods: {
     hideSlot() {
       if (this.useStore) {
         if (this.alertStore.height) {
