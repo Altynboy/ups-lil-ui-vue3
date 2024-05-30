@@ -21,7 +21,8 @@ import TableLite from './Other/Table/TableLite.vue'
 import CustomTable from './Other/Table/CustomTable.vue'
 
 import DefaultAlert from './Other/DefaultAlert/DefaultAlert.vue'
-import { appAlert } from './store/alertStore'
+import { appAlert as appAlertVue } from './store/alertStoreVue'
+import { appAlert as appAlertPinia } from './store/alertStorePinia'
 
 export {
   FormInput,
@@ -44,5 +45,6 @@ export {
   TableLite,
   CustomTable,
   DefaultAlert,
-  appAlert
+  appAlertVue,
+  appAlertPinia
 }

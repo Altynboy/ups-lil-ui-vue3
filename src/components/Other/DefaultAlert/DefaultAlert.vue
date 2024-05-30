@@ -4,17 +4,17 @@
       tabindex="-1"
       @keydown.esc="hideSlot()"
       :class="['ealert-container', $attrs.class]"
-      v-show="useStore ? this.$store.getters.isClicked : isClicked"
+      v-show="useStore ? alertStore.isClicked : isClicked"
     >
       <div
         class="ealert-container__popup"
         v-bind:style="borderColor()"
-        :class="{ wide: useStore ? $store.getters.height : wide }"
+        :class="{ wide: useStore ? alertStore.height : wide }"
       >
         <div class="first">
           <IconBase :class="'alert-icon'" :iconId="alertIcon()" />
           <span>
-            {{ useStore ? $store.getters.defAlert.text : alertText }}
+            {{ useStore ? alertStore.text : alertText }}
           </span>
         </div>
         <div class="close" @click="hideSlot()">
@@ -41,6 +41,8 @@ export default {
     BaseTransition,
     IconBase
   },
+
+  inject: ['alertStore'],
 
   props: {
     'alert-type': {
@@ -78,13 +80,17 @@ export default {
     wide: {
       type: Boolean,
       default: false
+    },
+    store: {
+      type: String,
+      default: 'pinia'
     }
   },
 
   data() {
     return {
       alertIcon: () => {
-        const alertCase = this.useStore ? this.$store.getters.defAlert.type : this.alertType
+        const alertCase = this.useStore ? this.alertStore.type : this.alertType
         switch (alertCase) {
           case 'error':
             return iconError
@@ -126,10 +132,10 @@ export default {
     },
     hideSlot() {
       if (this.useStore) {
-        if (this.$store.getters.height) {
-          this.$store.commit('clickAlertWide', false)
+        if (this.alertStore.height) {
+          this.alertStore.clickAlertWide(false)
         } else {
-          this.$store.commit('clickAlert', false)
+          this.alertStore.clickAlert(false)
         }
       } else {
         this.$emit('update:is-clicked', false)
