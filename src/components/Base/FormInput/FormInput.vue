@@ -87,6 +87,14 @@ export default {
       }
     )
 
+    watch(
+      () => tooltipFlag.value,
+      (newValue) => {
+        emit('valid', !newValue)
+      },
+      { immediate: true }
+    )
+
     const handleInput = (event) => {
       let value = event.target.value
 
