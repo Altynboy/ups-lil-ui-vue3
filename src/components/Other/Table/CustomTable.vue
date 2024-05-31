@@ -9,14 +9,14 @@
     <table v-show="!hideTable" class="table-iLS" v-else>
       <thead>
         <tr>
-          <th v-for="(item, i) in tableData.headers" :key="i">{{ item }}</th>
+          <th v-for="(item, i) in tableData.headers" :key="i" :style="thStyle">{{ item }}</th>
           <slot name="header"></slot>
           <template v-if="'buttons' in tableData">
-            <th>{{ tableData.buttons.header }}</th>
+            <th :style="thStyle">{{ tableData.buttons.header }}</th>
           </template>
           <slot name="last-header"></slot>
           <template v-if="last">
-            <th>Подробнее</th>
+            <th :style="thStyle">Подробнее</th>
           </template>
         </tr>
       </thead>
@@ -85,6 +85,7 @@
               <td>
                 <template v-if="!customBtn">
                   <a
+                    :style="actionStyle"
                     class="btn underline"
                     @keyup.enter="clickAction(i, j)"
                     @click="clickAction(i, j)"
@@ -97,6 +98,7 @@
                   <span v-if="!specificBtn">Нельзя отменить!</span>
                   <a
                     v-else
+                    :style="actionStyle"
                     class="btn underline"
                     @click="clickAction(i, j)"
                     v-for="(button, j) in tableData.buttons.data"
@@ -193,6 +195,12 @@ export default {
     },
     'justify-start': {
       type: Boolean
+    },
+    'th-style': {
+      type: Object
+    },
+    'action-style': {
+      type: Object
     }
   },
 
@@ -284,20 +292,21 @@ export default {
 @use "@/sass/underline.sass"
 // @import @/sass/custom-styles/square-checkbox
 
-.table-iLS a:focus-visible
+.table-iLS
+  a:focus-visible
     outline: none
     color: #409EFF
-.table-iLS
+
   tr:focus-within
     border: 0 !important
-    box-shadow: 0 0 10px var(--clr-box-shadow)
+    box-shadow: 0 0 10px var(--color-box-shadow)
     outline: 1px solid blue
     td
-      color: var(--clr-main)
-      // background-color: red
+      color: var(--color-text, #666666)
+
 .service-icon
-  margin-right: 15px
-  margin-left: 20px
+  margin-right: 0.5rem
+  margin-left: 1rem
 .clm-start
   display: flex
   align-items: center
@@ -307,13 +316,13 @@ td
   text-align: center
 
 h1
-  font-size: 30px
-  color: var(--clr-main)
-  margin-top: 25px
-  margin-bottom: 20px
+  font-size: 2rem
+  color: var(--color-text, #666666)
+  margin-top: 1.5rem
+  margin-bottom: 1rem
 
 tr.table__row:hover
-  background-color: #eeeeee
+  background-color: var(--color-table-hover, #eeeeee)
 
 .table-section-iLS
   overflow-x: auto
@@ -322,12 +331,12 @@ tr.table__row:hover
     color: red
     background-color: #fc3503
   .btn
-    margin-left: 20px
-    font-size: 23px
+    margin-left: 1rem
+    font-size: var(--font-size-table, 1.5rem)
     height: 100%
     border: none
     cursor: pointer
-    color: var(--clr-main)
+    color: var(--color-text)
 
 .rotate-up
   transform: rotate(0deg)

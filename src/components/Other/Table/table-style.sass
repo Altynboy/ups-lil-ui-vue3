@@ -6,17 +6,17 @@
 
 %header-bg-color
   // background-color: var(--clr-main)
-  background-color: #094973
+  background-color: var(--color-table-bg, #094973)
   color: white 
 
 %element-color
-  color: #666666
+  color: var(--color-text,#666666)
 
 %element-outShift-inShift
   padding: 9px 8px
 
 %table-default-prop
-  font-size: 23px
+  font-size: var(--font-size-table, 1.5rem)
   text-align: center
   width: 100%
   border-collapse: collapse
@@ -35,5 +35,5 @@ th
 td
   @extend %element-outShift-inShift
   @extend %element-color
-  border-bottom: 1px solid #CCCC
+  border-bottom: 1px solid var(--color-table-td-border-bottom, #CCCC)
   transition: .3s
