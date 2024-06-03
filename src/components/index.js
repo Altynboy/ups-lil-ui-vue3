@@ -19,6 +19,7 @@ import SlideTransition from './Other/Transition/SlideTransition.vue'
 import UserDevider from './Other/UserDevider/UserDevider.vue'
 import TableLite from './Other/Table/TableLite.vue'
 import CustomTable from './Other/Table/CustomTable.vue'
+import ModalWindow from './Other/ModalWindow/ModalWindow.vue'
 
 import DefaultAlert from './Other/DefaultAlert/DefaultAlert.vue'
 import { appAlert as appAlertVue } from './store/alertStoreVue'
@@ -44,6 +45,7 @@ export {
   UserDevider,
   TableLite,
   CustomTable,
+  ModalWindow,
   DefaultAlert,
   appAlertVue,
   appAlertPinia

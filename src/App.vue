@@ -5,6 +5,7 @@ import InputEmail from './components/Inputs/InputEmail/InputEmail.vue'
 import CustomTable from './components/Other/Table/CustomTable.vue'
 import TableLite from './components/Other/Table/TableLite.vue'
 import closeIcon from './assets/icons/close.svg'
+import ModalWindow from './components/Other/ModalWindow/ModalWindow.vue'
 
 export default {
   name: 'App',
@@ -13,13 +14,15 @@ export default {
     InputEmail,
     DefaultAlert,
     CustomTable,
-    TableLite
+    TableLite,
+    ModalWindow
   },
 
   data() {
     return {
       iin: '',
-      isClicked: true
+      isClicked: false,
+      showModal: true
     }
   },
 
@@ -64,7 +67,7 @@ export default {
   <main>
     <InputEmail v-model="iin" />
     <h1>Hello world</h1>
-    <button @click="isClicked = true">Show alert</button>
+    <button @click="showModal = true">Show alert</button>
     <DefaultAlert
       :is-clicked="isClicked"
       :message="'This is an alert'"
@@ -96,6 +99,12 @@ export default {
     </CustomTable>
 
     <TableLite :tableData="tableData" @click-icon="clickIcon"></TableLite>
+    <ModalWindow :show="showModal" @close="showModal = false">
+      <input />
+      <template v-slot:btns>
+        <button @click="showModal = false">Close</button>
+      </template>
+    </ModalWindow>
   </main>
 </template>
 
