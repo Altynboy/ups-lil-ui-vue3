@@ -13,6 +13,8 @@ import InputKbe from './Inputs/InputKbe/InputKbe.vue'
 import InputPhone from './Inputs/InputPhone/InputPhone.vue'
 import InputPhoneLogin from './Inputs/InputPhoneLogin/InputPhoneLogin.vue'
 import InputTariff from './Inputs/InputTariff/InputTariff.vue'
+import InputPassword from './Inputs/InputPassword/InputPassword.vue'
+import CustomSelect from './Other/Select/CustomSelect.vue'
 
 import BaseTransition from './Other/Transition/BaseTransition.vue'
 import SlideTransition from './Other/Transition/SlideTransition.vue'
@@ -40,6 +42,8 @@ export {
   InputPhone,
   InputPhoneLogin,
   InputTariff,
+  InputPassword,
+  CustomSelect,
   BaseTransition,
   SlideTransition,
   UserDevider,

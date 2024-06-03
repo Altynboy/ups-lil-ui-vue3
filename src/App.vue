@@ -6,6 +6,8 @@ import CustomTable from './components/Other/Table/CustomTable.vue'
 import TableLite from './components/Other/Table/TableLite.vue'
 import closeIcon from './assets/icons/close.svg'
 import ModalWindow from './components/Other/ModalWindow/ModalWindow.vue'
+import CustomSelect from './components/Other/Select/CustomSelect.vue'
+import InputPassword from './components/Inputs/InputPassword/InputPassword.vue'
 
 export default {
   name: 'App',
@@ -15,14 +17,32 @@ export default {
     DefaultAlert,
     CustomTable,
     TableLite,
-    ModalWindow
+    ModalWindow,
+    CustomSelect,
+    InputPassword
   },
 
   data() {
     return {
       iin: '',
       isClicked: false,
-      showModal: true
+      showModal: false,
+      options: [
+        {
+          text: 'Option 1',
+          value: 1
+        },
+        {
+          text: 'Option 2',
+          value: 2
+        },
+        {
+          text: 'Option 3',
+          value: 3
+        }
+      ],
+
+      pwd: ''
     }
   },
 
@@ -32,6 +52,9 @@ export default {
     },
     clickIcon(i, j) {
       console.log(`Clicked on icon ${i} and column ${j}`)
+    },
+    handleSelect(name, value) {
+      console.log(name, value)
     }
   },
 
@@ -66,8 +89,10 @@ export default {
 <template>
   <main>
     <InputEmail v-model="iin" />
+    <InputPassword v-model="pwd" />
     <h1>Hello world</h1>
     <button @click="showModal = true">Show alert</button>
+    <CustomSelect :options="options" @chosed-option="handleSelect"></CustomSelect>
     <DefaultAlert
       :is-clicked="isClicked"
       :message="'This is an alert'"

@@ -226,7 +226,7 @@ input
     font-size: 16px
 
 .focus:focus-within
-  border: 0 !important
+  // border: 0 !important
   box-shadow: 0 0 10px var(--clr-box-shadow)
   outline: 1px solid blue
 
