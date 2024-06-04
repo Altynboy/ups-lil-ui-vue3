@@ -70,10 +70,14 @@ const showPassword = () => {
     input
       width: 100%
       padding-left: 12px
+
       border: 1px solid var(--color-border, #CCC)
       border: none
-      font-size: 1rem
       background: transparent
+
+      font-size: 1rem
+      color: var(--color-text, #000)
+
     .icon
       width: 25px
       height: 100%

@@ -38,8 +38,8 @@
 
 <script setup>
 import { ref, watch, defineComponent, nextTick } from 'vue'
-import SlideTransition from '../Transition/BaseTransition.vue'
-import { IconBase } from 'ups-lil-ui-vue3'
+import SlideTransition from '../Transition/SlideTransition.vue'
+import IconBase from '@/components/Base/IconBase/IconBase.vue'
 import close from '@/assets/icons/close.svg'
 
 defineComponent({
