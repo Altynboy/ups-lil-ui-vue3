@@ -24,9 +24,9 @@ export default {
     value: {
       type: String
     },
-    placeholder: {
+    label: {
       type: String,
-      required: false
+      default: ''
     }
   },
   computed: {

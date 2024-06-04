@@ -13,11 +13,28 @@ export const appAlert = {
   // },
 
   actions: {
-    successSave() {
-      this.clickAlert(true)
-      this.setMessage({
-        text: 'Данные успешно сохранены',
+    callWarn(msg) {
+      this.callAlert({
+        text: msg,
         type: 'warning'
+      })
+    },
+    callInfo(msg) {
+      this.callAlert({
+        text: msg,
+        type: 'info'
+      })
+    },
+    callErr(msg) {
+      this.callAlert({
+        text: msg,
+        type: 'error'
+      })
+    },
+    callSuccess(msg) {
+      this.callAlert({
+        text: msg,
+        type: 'success'
       })
     },
     callAlert(data) {

@@ -1,10 +1,11 @@
 <template>
   <BaseTransition>
     <div
-      tabindex="-1"
-      @keydown.esc="hideSlot()"
-      :class="['ealert-container', $attrs.class]"
       v-show="useStore ? alertStore.isClicked : isClicked"
+      tabindex="-1"
+      ref="alertRef"
+      :class="['ealert-container', $attrs.class]"
+      @keydown.esc="hideSlot()"
     >
       <div
         class="ealert-container__popup"
@@ -17,7 +18,13 @@
             {{ useStore ? alertStore.text : alertText }}
           </span>
         </div>
-        <div class="close" @click="hideSlot()">
+        <div
+          class="close underline"
+          tabindex="0"
+          ref="closeIconRef"
+          @keydown.shift.tab.prevent=""
+          @click="hideSlot()"
+        >
           <IconBase :class="'close-icon'" :iconId="iconClose" />
         </div>
       </div>
@@ -156,11 +163,36 @@ export default {
         this.$emit('update:is-clicked', false)
       }
     }
+  },
+
+  mounted() {
+    this.$nextTick(function () {
+      this.$refs.closeIconRef.focus()
+    })
+  },
+
+  watch: {
+    isClicked(newVal) {
+      if (newVal) {
+        this.$nextTick(() => {
+          this.$refs.closeIconRef.focus()
+        })
+      }
+    },
+    'alertStore.isClicked'(newVal) {
+      if (newVal) {
+        this.$nextTick(() => {
+          this.$refs.closeIconRef.focus()
+        })
+      }
+    }
   }
 }
 </script>
 
 <style lang="sass" scoped>
+@use "@/sass/underline.sass"
+
 .ealert-container
   width: 100%
   height: 100vh
@@ -179,7 +211,7 @@ export default {
   &__popup
     width: 520px
     height: 80px
-    background: #FFFFFF
+    background: var(--color-background, #FFFFFF)
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
     padding: 25px
 
@@ -192,6 +224,10 @@ export default {
       justify-self: flex-end
       display: flex
       align-items: center
+      padding-block: 0.5rem
+      padding-inline: 0.2rem
+      &:focus-visible
+        outline: none
       &:hover
         svg
           fill: black
