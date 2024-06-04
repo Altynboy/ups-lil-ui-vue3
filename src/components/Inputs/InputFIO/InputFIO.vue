@@ -8,7 +8,7 @@
     :min="options.minlength"
     :warningMsg="options.warn"
     :sintax="options.sintax"
-    :placeholder="placeholder ? placeholder : options.placeholder"
+    :placeholder="options.placeholder"
     v-bind="$attrs"
   ></FormInput>
 </template>
