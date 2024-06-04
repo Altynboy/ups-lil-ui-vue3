@@ -57,37 +57,38 @@ const showPassword = () => {
 
     display: flex
     justify-content: space-between
-    background-color: #fff
 
-    border: 1px solid #CCC
+    background-color: var(--color-background, #fff)
+    border: 1px solid var(--color-border, #CCC)
 
     &:focus-within
-        // border: 0 !important
-        box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
-        outline: 1px solid blue
-        input
-            outline: none
+      // border: 0 !important
+      box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
+      outline: 1px solid blue
+      input
+        outline: none
     input
-        width: 100%
-        padding-left: 12px
-        border: 1px solid #ccc
-        border: none
-        font-size: 1rem
+      width: 100%
+      padding-left: 12px
+      border: 1px solid var(--color-border, #CCC)
+      border: none
+      font-size: 1rem
+      background: transparent
     .icon
-        width: 25px
-        height: 100%
-        color: #666
-        border: none
-        font-size: 1.5rem
+      width: 25px
+      height: 100%
+      color: #666
+      border: none
+      font-size: 1.5rem
 
-        display: flex
-        align-items: center
+      display: flex
+      align-items: center
 
-        margin-right: 5px
-        svg
-            filter: invert(0.5)
-        &:hover
-            cursor: pointer
-            svg
-                filter: invert(0)
+      margin-right: 5px
+      svg
+          filter: invert(0.5)
+      &:hover
+          cursor: pointer
+          svg
+              filter: invert(0)
 </style>
