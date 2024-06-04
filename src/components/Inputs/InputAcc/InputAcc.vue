@@ -25,6 +25,10 @@ export default {
   props: {
     modelValue: {
       type: String
+    },
+    label: {
+      type: String,
+      default: ''
     }
   },
   computed: {

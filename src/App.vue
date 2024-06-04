@@ -88,11 +88,11 @@ export default {
 
 <template>
   <main>
-    <InputEmail v-model="iin" />
+    <InputEmail v-model="iin" label="Email" />
     <InputPassword v-model="pwd" />
     <h1>Hello world</h1>
     <button @click="showModal = true">Show alert</button>
-    <CustomSelect :options="options" @chosed-option="handleSelect"></CustomSelect>
+    <CustomSelect :options="options" @chosed-option="handleSelect" label="My select"></CustomSelect>
     <DefaultAlert
       :is-clicked="isClicked"
       :message="'This is an alert'"

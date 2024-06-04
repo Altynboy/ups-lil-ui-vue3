@@ -2,7 +2,7 @@
   <FormInput
     v-model="inputVal"
     :placeholder="options.placeholder"
-    :title="options.title"
+    :label="label || options.title"
     :rule="options.format"
     :tooltipMsg="options.tooltip"
     :max="options.maxlength"
@@ -24,6 +24,10 @@ export default {
   props: {
     modelValue: {
       type: String
+    },
+    label: {
+      type: String,
+      default: ''
     }
   },
   computed: {

@@ -1,51 +1,54 @@
 <template>
-  <div
-    @blur="offFocus"
-    @focus="onFocus"
-    tabindex="0"
-    ref="select"
-    class="select-dropdown"
-    @keyup.up="pressUp"
-    @keydown.down="pressDown"
-    @keyup.enter="handleEnter"
-  >
-    <a @click="showOrHide" class="main-a" ref="selectBody">
-      <span>
-        {{ chosedName }}
-      </span>
-      <IconBase
-        v-if="options.length > 1"
-        :iconId="arrowDown"
-        height="8px"
-        width="12px"
-        :class="isClicked ? 'arr-up' : 'arr-down'"
-      />
-    </a>
-    <template v-if="isClicked && options.length > 1">
-      <div
-        class="options-container"
-        id="options-container"
-        :class="{
-          reverse: reverseOptions,
-          regular: !reverseOptions
-        }"
-      >
-        <div>
-          <template v-for="(item, i) in options">
-            <a
-              :id="'option' + i"
-              v-if="item.value != optionValue"
-              v-on:click="handleChoice(item.text, item.value, i)"
-              :key="i"
-              value="item.value"
-              :class="{ 'key-up': tabOption == i }"
-            >
-              <span :key="i + 'msg'">{{ item.text }} </span>
-            </a>
-          </template>
-        </div>
+  <div class="select-root">
+    <label v-if="label">{{ label }}</label>
+    <div
+      @blur="offFocus"
+      @focus="onFocus"
+      tabindex="0"
+      ref="select"
+      class="select-dropdown"
+      @keyup.up="pressUp"
+      @keydown.down="pressDown"
+      @keyup.enter="handleEnter"
+    >
+      <div @click="showOrHide" class="main-a option-selected" ref="selectBody">
+        <span>
+          {{ chosedName }}
+        </span>
+        <IconBase
+          v-if="options.length > 1"
+          :iconId="arrowDown"
+          height="8px"
+          width="12px"
+          :class="isClicked ? 'arr-up' : 'arr-down'"
+        />
       </div>
-    </template>
+      <template v-if="isClicked && options.length > 1">
+        <div
+          class="options-container"
+          id="options-container"
+          :class="{
+            reverse: reverseOptions,
+            regular: !reverseOptions
+          }"
+        >
+          <div>
+            <template v-for="(item, i) in options">
+              <div
+                v-if="item.value != optionValue"
+                :id="'option' + i"
+                :key="i"
+                :class="['option', { 'key-up': tabOption == i }]"
+                value="item.value"
+                @click="handleChoice(item.text, item.value, i)"
+              >
+                <span :key="i + 'msg'">{{ item.text }} </span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -65,6 +68,10 @@ export default {
     // "selectedItem",
     defaultValue: {
       required: false
+    },
+    label: {
+      type: String,
+      default: ''
     }
   },
 
@@ -296,6 +303,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
 .reverse
   bottom: 100%
   border: 1px solid var(--color-border, #CCCCCC)
@@ -319,11 +327,21 @@ export default {
         box-shadow: 0 5px 10px var(--clr-box-shadow)
         outline: 1px solid blue
 
+.select-root
+  display: flex
+  flex-direction: column
+  max-width: 350px
+  width: 100%
+  & > label
+    font-size: 1rem
+    margin-bottom: 0.5rem
+
 .select-dropdown
     display: inline-block
     margin-bottom: 0
     min-height: auto
     position: relative
+    max-height: 40px
 
     .main-a
       border: 1px solid var(--color-border, #CCCCCC)
@@ -341,12 +359,12 @@ export default {
       //   box-shadow: 0 0 10px var(--clr-box-shadow)
       //   outline: 1px solid blue
 
-    a
+    .option-selected
       font-size: 16px
       line-height: 19px
       width: 350px
       height: 40px
-      border: 0
+      // border: 0
       display: flex
       align-items: center
       justify-content: space-between
@@ -383,33 +401,36 @@ export default {
         position: relative
         width: 100%
         display: flex
-        a
+        .option
           width: 100%
           height: 40px
           color: #AAAAAA
+          display: flex
+          align-items: center
+          padding-left: 12px
 
-        a:hover
+          &:hover
             background-color: #CCC
             width: 100%
             color: black
     span
-        margin: 0
+      margin: 0
 
 
 .key-up
-    background-color: #CCC
-    width: 100%
-    height: 40px
-    color: black !important
+  background-color: #CCC
+  width: 100%
+  height: 40px
+  color: black !important
 
 @media only screen and (max-width: 600px)
   .options-container
-      position: relative
+    position: relative
 
   .select-dropdown
-      a
-          width: 100%
+    .option-selected
+      width: 100%
 
   .select-dropdown, .main-a, .options-container
-      width: 100%
+    width: 100%
 </style>

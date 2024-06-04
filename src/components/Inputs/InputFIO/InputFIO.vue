@@ -1,7 +1,7 @@
 <template>
   <FormInput
     v-model="inputVal"
-    :title="options.title"
+    :label="label || options.title"
     :rule="options.format"
     :tooltipMsg="options.tooltip"
     :max="options.maxlength"

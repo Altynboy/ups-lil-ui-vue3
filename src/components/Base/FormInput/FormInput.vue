@@ -1,6 +1,6 @@
 <template>
-  <div :class="{ root: !column, 'root-column': column }">
-    <label v-if="!!title">{{ title }}</label>
+  <div :class="[{ root: !column, 'root-column': column }]" :style="{ maxWidth: width }">
+    <label v-if="label">{{ label }}</label>
     <div class="input-container">
       <div class="custom-input focus" :class="{ warning: tooltipFlag || warningFlag }">
         <span class="mobile" v-if="mobile">+</span>
@@ -41,7 +41,10 @@ export default {
       type: String,
       default: ''
     },
-    title: String,
+    label: {
+      type: String,
+      default: ''
+    },
     max: {
       type: Number,
       default: 30
@@ -65,12 +68,19 @@ export default {
       default: '^[0-9А-Яа-я\\-\\s]$'
     },
     capitalize: Boolean,
-    column: Boolean,
+    column: {
+      type: Boolean,
+      default: true
+    },
     decimal: Boolean,
     placeholder: String,
     mobile: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: '350px'
     }
   },
 
@@ -231,17 +241,22 @@ input
   outline: 1px solid blue
 
 .root-column
-  display: block
+  display: flex
+  flex-direction: column
   width: 100%
+  max-width: 350px
   > label
-      margin: 0
-      width: 100%
+    margin-bottom: 0.5rem
+    width: 100%
 
 .root
-    margin-bottom: 10px
-    display: flex
-    align-items: center
-
+  display: flex
+  align-items: center
+  width: 100%
+  max-width: 350px
+  > label
+    margin-right: 1rem
+    width: 100%
 .warning
     border-color: red !important
     &:focus-within
@@ -253,15 +268,16 @@ input
 
 
 .input-container
-    display: flex
-    flex-direction: column
-    width: 350px
+  display: flex
+  flex-direction: column
+  width: 100%
 
 div.custom-input
-    display: flex
-    background-color: #FFF
-    border: 1px solid #CCC
-    align-items: center
+  display: flex
+  background-color: #FFF
+  border: 1px solid #CCC
+  align-items: center
+  width: 100%
 
 @media screen and ( max-width: 750px  )
     .root
