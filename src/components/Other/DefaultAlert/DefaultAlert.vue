@@ -5,7 +5,7 @@
       tabindex="-1"
       ref="alertRef"
       :class="['ealert-container', $attrs.class]"
-      @keydown.esc="hideSlot()"
+      @keydown.esc="hideSlot"
     >
       <div
         class="ealert-container__popup"
@@ -22,8 +22,9 @@
           class="close underline"
           tabindex="0"
           ref="closeIconRef"
+          @click="hideSlot"
           @keydown.shift.tab.prevent=""
-          @click="hideSlot()"
+          @keydown.enter="hideSlot"
         >
           <IconBase :class="'close-icon'" :iconId="iconClose" />
         </div>
