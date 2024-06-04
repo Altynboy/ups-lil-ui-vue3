@@ -63,7 +63,7 @@ const showPassword = () => {
 
     &:focus-within
         // border: 0 !important
-        box-shadow: 0 0 10px var(--clr-box-shadow)
+        box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
         outline: 1px solid blue
         input
             outline: none

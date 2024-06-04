@@ -299,7 +299,7 @@ export default {
 
   tr:focus-within
     border: 0 !important
-    box-shadow: 0 0 10px var(--color-box-shadow)
+    box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
     outline: 1px solid blue
     td
       color: var(--color-text, #666666)

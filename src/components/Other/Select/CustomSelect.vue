@@ -321,10 +321,10 @@ export default {
 .select-dropdown:focus-within
     &:focus-visible
       border: 0 !important
-      box-shadow: 0 0 10px var(--clr-box-shadow)
+      box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
       outline: 1px solid blue
       .options-container
-        box-shadow: 0 5px 10px var(--clr-box-shadow)
+        box-shadow: 0 5px 10px var(--color-box-shadow, #71a1ce)
         outline: 1px solid blue
 
 .select-root
@@ -345,7 +345,7 @@ export default {
 
     .main-a
       border: 1px solid var(--color-border, #CCCCCC)
-      background: #FFFFFF
+      background: var(--color-background, #FFFFFF)
       cursor: pointer
       &:hover
         svg
@@ -356,7 +356,7 @@ export default {
 
       // &:focus-within
       //   border: 0 !important
-      //   box-shadow: 0 0 10px var(--clr-box-shadow)
+      //   box-shadow:
       //   outline: 1px solid blue
 
     .option-selected

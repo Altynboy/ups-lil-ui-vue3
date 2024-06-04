@@ -228,6 +228,8 @@ input
   height: 40px
   border: none
   padding-left: 12px
+  background: transparent
+  color: var(--color-text, #000)
   &:focus-visible
     outline: none
     box-shadow: none
@@ -237,7 +239,7 @@ input
 
 .focus:focus-within
   // border: 0 !important
-  box-shadow: 0 0 10px var(--clr-box-shadow)
+  box-shadow: 0 0 10px var(--color-box-shadow, #71a1ce)
   outline: 1px solid blue
 
 .root-column
@@ -274,8 +276,8 @@ input
 
 div.custom-input
   display: flex
-  background-color: #FFF
-  border: 1px solid #CCC
+  background-color: var(--color-background, #FFF)
+  border: 1px solid var(--color-border, #CCC)
   align-items: center
   width: 100%
 
