@@ -1,5 +1,5 @@
 <template>
-  <BaseTransition>
+  <Transition name="slide-fade" :duration="250">
     <div
       v-show="useStore ? alertStore.isClicked : isClicked"
       tabindex="-1"
@@ -30,11 +30,10 @@
         </div>
       </div>
     </div>
-  </BaseTransition>
+  </Transition>
 </template>
 
 <script>
-import BaseTransition from '../Transition/BaseTransition.vue'
 import IconBase from '../../Base/IconBase/IconBase.vue'
 
 import iconInfo from '@/assets/icons/info.svg'
@@ -46,7 +45,6 @@ import iconClose from '@/assets/icons/close.svg'
 
 export default {
   components: {
-    BaseTransition,
     IconBase
   },
 
@@ -193,6 +191,7 @@ export default {
 
 <style lang="sass" scoped>
 @use "@/sass/underline.sass"
+@use "@/sass/transitions.sass"
 
 .ealert-container
   width: 100%

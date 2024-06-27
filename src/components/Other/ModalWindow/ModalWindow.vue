@@ -1,14 +1,14 @@
 <template>
-  <SlideTransition>
+  <Transition name="slide-fade" :duration="250">
     <div
-      v-if="showModal"
+      v-show="showModal"
       tabindex="0"
       ref="modalContainerRef"
       class="modal-container"
       :style="styleBg"
       @keyup.esc="closeModal"
     >
-      <div :class="['modal-window', $attrs.class]" :style="styleWin">
+      <div :class="['modal-window', 'inner', $attrs.class]" :style="styleWin">
         <div class="header">
           <h2>
             {{ title }}
@@ -33,12 +33,11 @@
         </div>
       </div>
     </div>
-  </SlideTransition>
+  </Transition>
 </template>
 
 <script setup>
 import { ref, watch, defineComponent, nextTick } from 'vue'
-import SlideTransition from '../Transition/SlideTransition.vue'
 import IconBase from '@/components/Base/IconBase/IconBase.vue'
 import close from '@/assets/icons/close.svg'
 
@@ -95,6 +94,7 @@ watch(
 
 <style lang="sass" scoped>
 @use "@/sass/underline.sass"
+@use "@/sass/transitions.sass"
 
 .modal-container
   width: 100%
