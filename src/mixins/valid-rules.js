@@ -60,7 +60,7 @@ export const validEmail = {
         minlength: null,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[A-Za-z@.-_]$'
+        sintax: '^[A-Za-z0-9@.\\-_]$'
       }
     }
   }
