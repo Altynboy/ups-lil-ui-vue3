@@ -8,6 +8,8 @@ import closeIcon from './assets/icons/close.svg'
 import ModalWindow from './components/Other/ModalWindow/ModalWindow.vue'
 import CustomSelect from './components/Other/Select/CustomSelect.vue'
 import InputPassword from './components/Inputs/InputPassword/InputPassword.vue'
+import BaseTransition from './components/Other/Transition/BaseTransition.vue'
+import SpinnerLoader from './components/Spinners/SpinnerLoader.vue'
 
 export default {
   name: 'App',
@@ -19,7 +21,9 @@ export default {
     TableLite,
     ModalWindow,
     CustomSelect,
-    InputPassword
+    InputPassword,
+    BaseTransition,
+    SpinnerLoader
   },
 
   data() {
@@ -42,7 +46,8 @@ export default {
         }
       ],
 
-      pwd: ''
+      pwd: '',
+      show: false
     }
   },
 
@@ -88,6 +93,7 @@ export default {
 
 <template>
   <main>
+    <SpinnerLoader></SpinnerLoader>
     <InputEmail v-model="iin" label="Email" />
     <InputPassword v-model="pwd" />
     <h1>Hello world</h1>
@@ -130,6 +136,10 @@ export default {
         <button @click="showModal = false">Close</button>
       </template>
     </ModalWindow>
+    <Transition name="fade">
+      <h1 v-if="show">Transition</h1>
+    </Transition>
+    <button @click="show = !show">SHOW</button>
   </main>
 </template>
 
@@ -174,6 +184,11 @@ header
       color: red
       width: 50%
 
+.fade-enter-active, .fade-leave-active
+  transition: opacity 1s ease
+
+.fade-enter-from, .fade-leave-to
+  opacity: 0
 
 
 @media (min-width: 1024px)

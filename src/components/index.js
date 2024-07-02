@@ -23,6 +23,8 @@ import TableLite from './Other/Table/TableLite.vue'
 import CustomTable from './Other/Table/CustomTable.vue'
 import ModalWindow from './Other/ModalWindow/ModalWindow.vue'
 
+import SpinnerLoader from './Spinners/SpinnerLoader.vue'
+
 import DefaultAlert from './Other/DefaultAlert/DefaultAlert.vue'
 import { appAlert as appAlertVue } from './store/alertStoreVue'
 import { appAlert as appAlertPinia } from './store/alertStorePinia'
@@ -50,6 +52,7 @@ export {
   TableLite,
   CustomTable,
   ModalWindow,
+  SpinnerLoader,
   DefaultAlert,
   appAlertVue,
   appAlertPinia
