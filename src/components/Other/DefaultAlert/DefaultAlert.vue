@@ -48,7 +48,18 @@ export default {
     IconBase
   },
 
-  inject: ['alertStore'],
+  inject: {
+    alertStore: {
+      default: () => ({
+        isClicked: false,
+        height: false,
+        type: 'info',
+        text: '',
+        clickAlert: () => {},
+        clickAlertWide: () => {}
+      })
+    }
+  },
 
   props: {
     'alert-type': {
@@ -165,23 +176,26 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(function () {
-      this.$refs.closeIconRef.focus()
-    })
+    const isVisible = this.useStore ? this.alertStore.isClicked : this.isClicked
+    if (isVisible) {
+      this.$nextTick(function () {
+        this.$refs.closeIconRef?.focus()
+      })
+    }
   },
 
   watch: {
     isClicked(newVal) {
       if (newVal) {
         this.$nextTick(() => {
-          this.$refs.closeIconRef.focus()
+          this.$refs.closeIconRef?.focus()
         })
       }
     },
     'alertStore.isClicked'(newVal) {
       if (newVal) {
         this.$nextTick(() => {
-          this.$refs.closeIconRef.focus()
+          this.$refs.closeIconRef?.focus()
         })
       }
     }

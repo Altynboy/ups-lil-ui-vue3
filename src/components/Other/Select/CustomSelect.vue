@@ -90,7 +90,6 @@ export default {
       tabOption: 1,
       windowHeight: null,
       topOffset: null,
-      scrollTop: null,
       reverseOptions: false,
       chosedOptionId: 0,
       arrowDown: arrowDown
@@ -120,10 +119,6 @@ export default {
     },
     onResize() {
       this.windowHeight = window.innerHeight
-    },
-    handleScroll() {
-      // console.log(window.scrollY);
-      this.scrollTop = window.scrollY
     },
     handleEnter() {
       var name = this.options[this.tabOption].name
@@ -193,11 +188,9 @@ export default {
     },
     onFocus() {
       this.isClicked = true
-      document.documentElement.style.overflow = 'hidden'
     },
     offFocus() {
       this.isClicked = false
-      document.documentElement.style.overflow = 'auto'
     },
     showOrHide() {
       // if (this.isClicked) {
@@ -227,14 +220,6 @@ export default {
   },
 
   computed: {
-    filteredArray: function () {
-      var array = []
-      for (let index = 0; index < this.options.length; index++) {
-        if (this.chosedName != this.options.text) array.push(this.options[index])
-        // else console.log(this.options[index]);
-      }
-      return array
-    }
   },
 
   watch: {
@@ -247,17 +232,11 @@ export default {
         }
       }
       this.getPosition()
-      var relativeOffset = this.topOffset - this.scrollTop
+      var relativeOffset = this.topOffset - window.scrollY
       if (relativeOffset > this.windowHeight / 2) {
         this.reverseOptions = true
       } else {
         this.reverseOptions = false
-      }
-      if (this.isClicked) {
-        document.documentElement.style.overflow = 'hidden'
-        return
-      } else {
-        document.documentElement.style.overflow = 'auto'
       }
     },
     options: function () {
@@ -290,14 +269,12 @@ export default {
       // }
     }
     this.$emit('chosed-option', this.chosedName, this.optionValue)
-    window.addEventListener('scroll', this.handleScroll)
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
   },
 
   unmounted() {
-    window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('resize', this.onResize)
   }
 }

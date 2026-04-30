@@ -1,7 +1,7 @@
 <template>
   <Transition name="slide-fade" :duration="250">
     <div
-      v-show="showModal"
+      v-if="showModal"
       tabindex="0"
       ref="modalContainerRef"
       class="modal-container"
