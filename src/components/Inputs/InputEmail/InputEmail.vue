@@ -8,7 +8,7 @@
     :max="options.maxlength"
     :min="options.minlength"
     :warningMsg="options.warn"
-    :sintax="options.sintax"
+    :syntax="options.syntax"
     v-bind="$attrs"
   ></FormInput>
 </template>

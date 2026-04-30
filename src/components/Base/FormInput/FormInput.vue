@@ -10,7 +10,7 @@
           :value="modelValue"
           :maxlength="max"
           @input="handleInput"
-          @keypress="checkSintax($event)"
+          @keypress="checkSyntax($event)"
           @keydown="handleKeyDown($event)"
           @paste="onPaste($event)"
           :placeholder="placeholder"
@@ -63,7 +63,7 @@ export default {
       type: Boolean,
       default: false
     },
-    sintax: {
+    syntax: {
       type: String,
       default: '^[0-9А-Яа-я\\-\\s]$'
     },
@@ -172,16 +172,16 @@ export default {
       }
     }
 
-    const checkSintax = (event) => {
+    const checkSyntax = (event) => {
       const value = event.target.value
-      let char = String.fromCharCode(event.keyCode)
+      let char = event.key
 
       if (value.length < 1 && char == ' ') {
         event.preventDefault()
         return
       }
 
-      let match = new RegExp(props.sintax)
+      let match = new RegExp(props.syntax)
       if (props.decimal && char == '.' && value.indexOf('.') > -1) {
         event.preventDefault()
         return
@@ -204,7 +204,7 @@ export default {
       handleKeyDown,
       onPaste,
       handleInput,
-      checkSintax
+      checkSyntax
     }
   }
 }

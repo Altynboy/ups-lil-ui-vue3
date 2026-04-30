@@ -285,19 +285,20 @@ export default {
       //   this.tabOption = 0;
       // }
       // if (this.isClicked) {
+      // if (this.isClicked) {
       //   this.scrollToElement(1);
       // }
     }
     this.$emit('chosed-option', this.chosedName, this.optionValue)
-    window.addEventListener('scroll', this.handleScroll())
+    window.addEventListener('scroll', this.handleScroll)
     this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize())
+      window.addEventListener('resize', this.onResize)
     })
   },
 
   unmounted() {
-    window.removeEventListener('scroll', this.handleScroll())
-    window.removeEventListener('resize', this.onResize())
+    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('resize', this.onResize)
   }
 }
 </script>

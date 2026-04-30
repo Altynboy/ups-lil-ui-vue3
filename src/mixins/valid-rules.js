@@ -9,7 +9,7 @@ export const validFIO = {
         minlength: null,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[А-Яа-я- ]$'
+        syntax: '^[А-Яа-я- ]$'
       }
     }
   }
@@ -26,7 +26,7 @@ export const validLoginPhone = {
         minlength: 14,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[0-9]$'
+        syntax: '^[0-9]$'
       }
     }
   }
@@ -43,7 +43,7 @@ export const validPhone = {
         minlength: null,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[0-9+]$'
+        syntax: '^[0-9+]$'
       }
     }
   }
@@ -60,7 +60,7 @@ export const validEmail = {
         minlength: null,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[A-Za-z0-9@.\\-_]$'
+        syntax: '^[A-Za-z0-9@.\\-_]$'
       }
     }
   }
@@ -75,7 +75,7 @@ export const validIIN = {
         maxlength: 12,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[0-9]$'
+        syntax: '^[0-9]$'
       }
     }
   }
@@ -90,7 +90,7 @@ export const validKbe = {
         maxlength: 2,
         tooltip: 'Обязательное поле',
         warn: 'Код КБе может быть только от 11 до 29',
-        sintax: '^[0-9]$'
+        syntax: '^[0-9]$'
       }
     }
   }
@@ -105,7 +105,7 @@ export const validBin = {
         maxlength: 12,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[0-9]$'
+        syntax: '^[0-9]$'
       }
     }
   }
@@ -120,7 +120,7 @@ export const validBik = {
         maxlength: 8,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[A-z]$'
+        syntax: '^[A-z]$'
       }
     }
   }
@@ -137,7 +137,7 @@ export const validSubAcc = {
         minlength: 1,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[0-9]$'
+        syntax: '^[0-9]$'
       }
     }
   }
@@ -152,7 +152,7 @@ export const validAcc = {
         maxlength: 20,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '^[A-z0-9]$'
+        syntax: '^[A-z0-9]$'
       }
     }
   }
@@ -168,7 +168,7 @@ export const validTariff = {
         minlength: null,
         tooltip: 'Обязательное поле',
         warn: 'Не соответствует формату',
-        sintax: '[0-9.]'
+        syntax: '[0-9.]'
       }
     }
   }

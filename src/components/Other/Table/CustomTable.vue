@@ -270,7 +270,7 @@ export default {
       handler() {
         if (this.checkbox) {
           this.checkboxList = []
-          for (let i; i < this.tableData.data.length; i++) {
+          for (let i = 0; i < this.tableData.data.length; i++) {
             this.checkboxList.push(false)
           }
         }
@@ -278,7 +278,7 @@ export default {
     },
     closeAll: function (value) {
       if (value)
-        for (let i; i < this.tableData.data.length; i++) {
+        for (let i = 0; i < this.tableData.data.length; i++) {
           this.state.push(false)
           this.isRowExpanded.push(false)
         }
@@ -360,7 +360,7 @@ tr.table__row:hover
 .table-leave-active
   transition: all .3s ease
 
-.table-enter, .table-leave-to
+.table-enter-from, .table-leave-to
   transform: translateY(10px)
   opacity: 0
 

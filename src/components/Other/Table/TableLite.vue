@@ -45,7 +45,7 @@
 import IconBase from '../../Base/IconBase/IconBase.vue'
 
 export default {
-  name: 'CustomTable',
+  name: 'TableLite',
 
   components: {
     IconBase

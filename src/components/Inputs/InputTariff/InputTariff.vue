@@ -7,7 +7,7 @@
     :max="options.maxlength"
     :min="options.minlength"
     :warningMsg="options.warn"
-    :sintax="options.sintax"
+    :syntax="options.syntax"
     decimal
     v-bind="$attrs"
   ></FormInput>
